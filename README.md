@@ -14,4 +14,10 @@
   
 ## Git
   * https://git-scm.com/downloads
+
+## To Run
+```
+yarn
+yarn vite
+```
  
