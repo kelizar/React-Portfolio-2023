@@ -1,7 +1,7 @@
 import React from 'react'
 import css from './Hero.module.scss'
 import { motion } from "framer-motion";
-import { staggerContainer } from '../../utils/motion';
+import { staggerContainer, fadeIn, slideIn } from '../../utils/motion';
 
 const Hero = () => {
     return (
@@ -23,7 +23,7 @@ const Hero = () => {
 
                         Hey There, <br /> I'm Koreen.
                     </motion.span>
-                    <motion.span className="secondaryText"variants={("left", "tween, 0.4, 1")}>
+                    <motion.span className="secondaryText" variants={fadeIn("left", "tween", 0.4, 1)}>
                         I design beautiful simple
                         <br />
                         things, And I love what I do
@@ -31,29 +31,43 @@ const Hero = () => {
                 </div>
 
                 {/* person image */}
-                <div className={css.person}>
-                    <img src="./person.png" alt="" />
-                </div>
-
+                <motion.div
+                    variants={fadeIn("up", "tween", 0.3, 1)}
+                    className={css.person}
+                >
+                    <motion.img
+                        variants={slideIn("up", "tween", 0.5, 1.3)}
+                        src="./person.png" alt="" />
+                </motion.div>
 
                 {/* email */}
                 <a className={css.email} href="mailto:test@gmail.com">
                     test@gmail.com
                 </a>
+
                 {/* lower elements */}
                 <div className={css.lowerElements}>
-                    <div className={css.experience}>
+                    <motion.div
+                        variants={fadeIn("right", "tween", 0.3, 1)}
+                        className={css.experience}
+                    >
                         <div className="primaryText">10</div>
                         <div className="secondaryText">
                             <div>Years</div>
                             <div>Experience</div>
                         </div>
-                    </div>
-                    <div className={css.certificate}>
+                    </motion.div>
+
+                    <motion.div
+                        className={css.certificate}
+                        variants={fadeIn("left", "tween", 0.5, 1)}
+                    >
+
                         <img src="./certificate.png" alt="" />
                         <span>CERTIFIED PROFESSIONAL</span>
                         <span>UI/UX DESIGNER</span>
-                    </div>
+                    </motion.div>
+
                 </div>
             </motion.div >
         </section >
