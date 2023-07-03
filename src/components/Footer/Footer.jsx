@@ -1,38 +1,41 @@
-import React, { useState } from "react"
-import css from './Header.module.scss'
-import { BiMenuAltRight } from 'react-icons/bi'
+import React from "react"
+import { footerVariants, staggerChildren } from "../../utils/motion"
+import css from "./Footer.module.scss"
 import { motion } from 'framer-motion'
-import { getMenuStyles, headerVariants } from "../../utils/motion"
-import useHeaderShadow from "../../hooks/useHeaderShadow"
-import { Link } from 'react-router-dom'
 import { HashLink } from 'react-router-hash-link'
 import linkedin from '../../../src/assets/linkedin-svg.svg'
 import github from '../../../src/assets/github-mark.svg'
 
-
-const Header = () => {
-
-    const [menuOpened, setMenuOpened] = useState(false)
-    const headerShadow = useHeaderShadow()
-
+const Footer = () => {
     return (
-        <motion.div
+        <motion.section
+            variants={staggerChildren}
             initial="hidden"
             whileInView="show"
-            variants={headerVariants}
             viewport={{ once: true, amount: 0.10 }}
-            className={`paddings ${css.wrapper}`}
-            style={{ boxShadow: headerShadow }}
-        >
+            className={`paddings ${css.wrapper}`}>
+            <a className="anchor" id="footer"></a>
 
-            <div className={`flexCenter innerWidth ${css.container}`}>
-                <div className={css.name}>
-                    Koreen
+
+            <motion.div
+                variants={footerVariants}
+                className={`innerWidth yPaddings flexCenter ${css.container}`}>
+                <div className={css.left}>
+                    <span className="primaryText">
+                        Let's make something <br />
+                        amazing together.
+                    </span>
+                    <span className="primaryText">
+                        Start by <a href="https://www.linkedin.com/in/Koreenwilkinson/" target="_blank">saying hi</a>
+                    </span>
                 </div>
 
-                <ul
-                    style={getMenuStyles(menuOpened)}
-                    className={`flexCenter ${css.menu}`}>
+                <div className={css.right}>
+                    <div className={css.info}>
+                        {/* <span className="secondaryText">Made with Love in Sunny California</span> */}
+                        <p className="secondaryText">Made with Love in Sunny California</p>
+                    </div>
+                    <ul className={css.menu}>
                     <li><HashLink to='/#hero'>Home</HashLink></li>
                     <li><HashLink smooth to="/#expertise">Expertise</HashLink></li>
                     <li><HashLink smooth to="/#Portfolio">Case Studies</HashLink></li>
@@ -44,16 +47,10 @@ const Header = () => {
                     <img style={{'height':'1rem'}} src={linkedin} /></HashLink></li>
                     <li><HashLink smooth to="https://github.com/Koreenwilkinson" target="_blank">GitHub <img style={{'height':'1rem'}} src={github} /></HashLink></li>
                 </ul>
-
-                {/* for medium and small screens */}
-                <div className={css.menuIcon}
-                    onClick={() => setMenuOpened((prev) => !prev)}
-                >
-                    <BiMenuAltRight size={30} />
                 </div>
-            </div>
-        </motion.div>
-    )
-}
+            </motion.div>
+        </motion.section>
+    );
+};
 
-export default Header
+export default Footer;
